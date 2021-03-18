@@ -8,17 +8,40 @@ package cn.itcast.day11.demo05;
 接口名称 对象名 = new 接口名称(){
     //覆盖重写所有抽象方法
 }
+
+对格式"new 接口名称(){...}"进行解析
+1. new 代表创建对象的动作
+2. 接口名称就是匿名内部类需要实现哪个接口
+3. {...}这才是匿名内部类的内容
+
+另外还要注意：
+1. 匿名内部类在创建对象的时候，只能使用唯一一次。
+如果希望多次创建对象，而且类的内容一样的话，那么就必须使用单独定义的实现类。
+2.匿名对象，在调用方法的时候，只能调用唯一一次。
+如果希望同一个对象，调用多次方法，那么必须给对象起个名字。
+3. 匿名内部类是省略了【实现类/子类】，但是匿名对象是省略了【对象名称】
+强调：匿名内部类和匿名对象不是一回事！！！
  */
 public class DemoMain {
     public static void main(String[] args) {
         MyInterface impl = new MyInterfaceImpl();//普通实现类
-        impl.method();
-        MyInterface some = new MyInterface() {//匿名内部类
+        impl.method1();
+        impl.method2();
+
+        //
+        MyInterface some = new MyInterface() {
             @Override
-            public void method() {
-                System.out.println("使用匿名内部类覆盖重写了方法！");
+            public void method1() {
+                System.out.println("匿名内部类实现了方法111");
             }
+
+            @Override
+            public void method2() {
+                System.out.println("匿名内部类实现了方法222");
+            }
+
         };
-        some.method();
+        some.method1();
+        some.method2();
     }
 }
